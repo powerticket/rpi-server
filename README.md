@@ -77,3 +77,26 @@ $ `./configure`
 $ `make`
 
 $ `sudo make install`
+
+
+
+## Samba
+
+### Installation
+
+$ `sudo apt-get install samba samba-common-bin`
+
+$ `sudo nano /etc/samba/smb.conf`
+
+```
+[id]
+   path = folder_path
+   writeable=Yes
+   create mask=0777
+   directory mask=0777
+   public=no
+```
+
+$ `sudo smbpasswd -a {id}`
+
+$ `sudo systemctl restart smbd`
