@@ -48,7 +48,7 @@
 
 
 
-## Python version control
+## Python
 
 ### Configure basic python
 
@@ -77,6 +77,12 @@ $ `./configure`
 $ `make`
 
 $ `sudo make install`
+
+
+
+### Pip
+
+$ `sudo apt-get install python3-pip`
 
 
 
