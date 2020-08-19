@@ -5,7 +5,7 @@ import imax_crawling
 import json
 
 
-f = open('./secret/telegram_key.json', 'r')
+f = open('/home/pi/rpi-server/secret/telegram_key.json', 'r')
 j = json.loads(f.read())
 f.close()
 telegram_token = j.get('telegram_token')
