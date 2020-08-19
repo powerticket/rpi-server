@@ -32,7 +32,7 @@
 
 ## Auto reboot & run
 
-1. Type `sudo crontab -e` and write `m h dom mon dow command` like `0 0 * * * reboot`.
+1. Type `sudo crontab -e` and write `m h dom mon dow command` like `0 0 * * * /sbin/reboot`.
 
    ```shell
    pi@raspberrypi:~ $ sudo crontab -e
