@@ -24,7 +24,7 @@
 ## Configuration
 
 1. Initial username and password are `pi`, `raspberry`.
-2. Type `su passwd` and `passwd` to change password of super user and pi user.
+2. Type `sudo passwd` and `passwd` to change password of super user and pi user.
 3. Type `sudo apt-get update` and `sudo apt-get upgrade` to be up-to-date.
 4. Type `sudo raspi-config` if you want to set another configurations like time zone.
 
