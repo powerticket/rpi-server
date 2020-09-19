@@ -121,3 +121,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+ALLOWED_HOSTS = ['jwp0530.iptime.org', '192.168.0.3']
