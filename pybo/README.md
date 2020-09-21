@@ -20,6 +20,12 @@
 
 ### Settings
 
+```python
+# settings.py
+
+ALLOWED_HOSTS = ['jwp0530.iptime.org']
+```
+
 
 
 ### App
@@ -72,10 +78,46 @@ Check localhost:80 in web browser.
 
 ### Installation
 
+```bash
+$ pip install gunicorn
+```
+
 
 
 ### Launch
 
+```python
+# myapp.py
+
+def app(environ, start_response):
+        data = b"Hello, World!\n"
+        start_response("200 OK", [
+            ("Content-Type", "text/plain"),
+            ("Content-Length", str(len(data)))
+        ])
+        return iter([data])
+```
+
+```bash
+$ gunicorn -w 4 myapp:app
+```
+
+```bash
+$ gunicorn --bind 0.0.0.0 pybo.wsgi
+```
+
+```bash
+$ gunicorn -w 2 --forwarded-allow-ips="jwp0530.iptime.org" pybo.wsgi
+```
+
 
 
 ## Domain name
+
+
+
+## Security
+
+### Http
+
+https://www.youtube.com/watch?v=LoYpXoBJPMc&list=PLRx0vPvlEmdChjc6N3JnLaX-Gihh5pHcx&index=2&ab_channel=%EB%8F%99%EB%B9%88%EB%82%98

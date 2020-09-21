@@ -86,6 +86,29 @@ $ `sudo apt-get install python3-pip`
 
 
 
+### [Deadsnakes](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa)(Ubuntu)
+
+```bash
+$ sudo add-apt-repository ppa:deadsnakes/ppa
+$ sudo apt-get update
+$ sudo apt install python3.7
+```
+
+
+
+### alias
+
+```bash
+$ sudo nano ~/.bashrc
+```
+
+```
+-------default-------
+alias python='python3.7'
+```
+
+
+
 ## Samba
 
 ### Installation
