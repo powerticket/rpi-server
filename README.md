@@ -129,3 +129,18 @@ $ `sudo nano /etc/samba/smb.conf`
 $ `sudo smbpasswd -a {id}`
 
 $ `sudo systemctl restart smbd`
+
+
+
+## Docker
+
+### Installation (Rpi3 raspbian buster)
+
+```bash
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
+$ sudo usermod -aG docker pi
+$ newgrp docker
+$ docker run hello-world
+```
+
