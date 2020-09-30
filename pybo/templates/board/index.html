@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">작성자</th>
+        <th scope="col">제목</th>
+        <th scope="col">작성일</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for question in questions %}
+        <tr>
+          <td>{{ question.author }}</td>
+          <td>
+            <a style="color: black;" href="{% url 'board:detail' question.pk %}"><b>{{ question.title }}</b></a>
+            <span style="font-size: 0.75rem; color: crimson;">{{ question.answer_set.all|length }}</span>
+          </td>
+          <td>{{ question.created_at|date:"Y-m-d" }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'board:create' %}">Create</a>
+{% endblock %}

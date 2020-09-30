@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Question</h1>
+  <div class="card m-3" style="width: 100%;">
+    <div class="card-body">
+        <h2 class="card-title">{{ question.title }}</h2>
+        <p>작성자 : {{ question.author }}</p>
+        <div class="text-right">
+          <p class="mb-0">작성 시간: {{ question.created_at }}</p>
+          <p>수정 시간: {{ question.updated_at }}</p>
+        </div>
+      <hr>
+      <p class="card-text">{{ question.content }}</p>
+      <hr>
+      {% for comment in question.comments.all %}
+        <p>{{ comment.author }}</p>
+        <p>{{ comment.content }}</p>
+      {% endfor %}
+      <form action="{% url 'board:create_question_comment' question.pk %}" method="POST">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+  <div class="text-right">
+    <a href="{% url 'board:create_answer' question.pk %}">Create Answer</a>
+  </div>
+  <a href="{% url 'board:update' question.pk %}">Update</a>
+  <a href="{% url 'board:index' %}">Back</a>
+  <form action="{% url 'board:delete' question.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+  </form>
+  <h1>Answer</h1>
+  {% for answer in answers %}
+  <div class="card m-3" style="width: 100%;">
+    <div class="card-body">
+        <h2 class="card-title">{{ answer.title }}</h2>
+        <p>작성자 : {{ answer.author }}</p>
+        <div class="text-right">
+          <p class="mb-0">작성 시간: {{ answer.created_at }}</p>
+          <p>수정 시간: {{ answer.updated_at }}</p>
+        </div>
+      <hr>
+      <p class="card-text">{{ answer.content }}</p>
+      {% for comment in answer.comments.all %}
+        <p>{{ comment.author }}</p>
+        <p>{{ comment.content }}</p>
+      {% endfor %}
+      <form action="{% url 'board:create_answer_comment' question.pk answer.pk %}" method="POST">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit">
+      </form>
+      <form action="{% url 'board:delete_answer' question.pk answer.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
