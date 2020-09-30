@@ -1,11 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 
 # Create your views here.
 def signup(request):
     if request.method == 'POST':
-        pass
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('accounts:profile')
     else:
         form = CustomUserCreationForm()
     context = {
@@ -15,4 +20,4 @@ def signup(request):
 
 @login_required
 def profile(request):
-    pass
+    return render(request, 'accounts/profile.html')
