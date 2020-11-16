@@ -64,10 +64,6 @@ $ sudo apt install nginx
 $ sudo systemctl start nginx
 ```
 
-Check localhost:80 in web browser.
-
-![image-20200919225605571](README.assets/image-20200919225605571.png)
-
 
 
 ## [Gunicorn](https://gunicorn.org/)
@@ -108,6 +104,37 @@ $ gunicorn --bind 0.0.0.0 pybo.wsgi
 
 ```bash
 $ gunicorn -w 2 --forwarded-allow-ips="jwp0530.iptime.org" pybo.wsgi
+```
+
+
+
+### Add as a service
+
+```bash
+$ sudo nano /etc/systemd/system/gunicorn.service
+```
+
+```
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/rpi-server/pybo
+ExecStart=/home/pi/rpi-server/pybo/venv/bin/gunicorn \
+        --workers 2 \
+        --bind unix:/tmp/gunicorn.sock \
+        pybo.wsgi
+[Install]
+WantedBy=multi-user.target
+
+```
+
+```bash
+$ sudo systemctl enable gunicorn.service
+$ sudo systemctl start gunicorn.service
 ```
 
 
