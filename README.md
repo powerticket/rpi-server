@@ -23,10 +23,33 @@
 
 ## Configuration
 
+### basic
+
 1. Initial username and password are `pi`, `raspberry`.
 2. Type `sudo passwd` and `passwd` to change password of super user and pi user.
 3. Type `sudo apt-get update` and `sudo apt-get upgrade` to be up-to-date.
 4. Type `sudo raspi-config` if you want to set another configurations like time zone.
+
+
+
+### swap-memory
+
+```bash
+$ sudo /etc/init.d/dphys-swapfile stop
+$ sudo vi /etc/dphys-swapfile
+```
+
+```
+# /etc/dphys-swapfile
+...
+CONF_SWAPSIZE=2048
+...
+```
+
+```bash
+$ sudo /etc/init.d/dphys-swapfile start
+$ free -h
+```
 
 
 
@@ -134,7 +157,7 @@ $ `sudo systemctl restart smbd`
 
 ## Docker
 
-### Installation (Rpi3 raspbian buster)
+### Docker Installation (Rpi3 raspbian buster)
 
 ```bash
 $ curl -fsSL https://get.docker.com -o get-docker.sh
@@ -142,5 +165,17 @@ $ sudo sh get-docker.sh
 $ sudo usermod -aG docker pi
 $ newgrp docker
 $ docker run hello-world
+```
+
+
+
+### Docker Compose Installation (Rpi3 raspbian buster)
+
+```bash
+$ sudo apt-get install libffi-dev libssl-dev -y
+$ sudo apt install python3-dev -y
+$ sudo apt-get install -y python3 python3-pip -y
+$ sudo pip3 install docker-compose
+$ docker-compose -v
 ```
 
