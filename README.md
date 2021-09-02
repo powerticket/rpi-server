@@ -19,8 +19,6 @@
    }
    ```
 
-
-
 ## Configuration
 
 ### basic
@@ -29,8 +27,6 @@
 2. Type `sudo passwd` and `passwd` to change password of super user and pi user.
 3. Type `sudo apt-get update` and `sudo apt-get upgrade` to be up-to-date.
 4. Type `sudo raspi-config` if you want to set another configurations like time zone.
-
-
 
 ### swap-memory
 
@@ -51,16 +47,15 @@ $ sudo /etc/init.d/dphys-swapfile start
 $ free -h
 ```
 
-
-
 ## Auto reboot & run
 
 1. Type `sudo crontab -e` and write `m h dom mon dow command` like `0 0 * * * /sbin/reboot`.
 
    ```shell
-   pi@raspberrypi:~ $ sudo crontab -e
+   $ sudo crontab -e
    no crontab for root - using an empty one
    crontab: installing new crontab
+   $ service cron restart
    ```
 
 2. Can check whether reboot is done or not by typing `journalctl -b`.
@@ -68,8 +63,6 @@ $ free -h
 3. Type `sudo nano /etc/profile` and add commands you want to run when system is started.
 
 4. Type `sudo raspi-config` and select `Boot Options` then `Desktop/CLI` then `Console Autologin`.
-
-
 
 ## Python
 
@@ -85,8 +78,6 @@ $ `sudo ln -sf /usr/bin/python3 /user/bin/python`
 
 cf. `unlink symbolic_name`
 
-
-
 ### [Version update](https://www.python.org/downloads/source/)
 
 $ `wget download_url`
@@ -101,13 +92,9 @@ $ `make`
 
 $ `sudo make install`
 
-
-
 ### Pip
 
 $ `sudo apt-get install python3-pip`
-
-
 
 ### [Deadsnakes](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa)(Ubuntu)
 
@@ -116,8 +103,6 @@ $ sudo add-apt-repository ppa:deadsnakes/ppa
 $ sudo apt-get update
 $ sudo apt install python3.7
 ```
-
-
 
 ### alias
 
@@ -129,8 +114,6 @@ $ sudo nano ~/.bashrc
 -------default-------
 alias python='python3.7'
 ```
-
-
 
 ## Samba
 
@@ -153,8 +136,6 @@ $ `sudo smbpasswd -a {id}`
 
 $ `sudo systemctl restart smbd`
 
-
-
 ## Docker
 
 ### Docker Installation (Rpi3 raspbian buster)
@@ -167,8 +148,6 @@ $ newgrp docker
 $ docker run hello-world
 ```
 
-
-
 ### Docker Compose Installation (Rpi3 raspbian buster)
 
 ```bash
@@ -177,5 +156,25 @@ $ sudo apt install python3-dev -y
 $ sudo apt-get install -y python3 python3-pip -y
 $ sudo pip3 install docker-compose
 $ docker-compose -v
+```
+
+## CUPS
+
+> Common Unix Printing System
+
+```bash
+$ sudo apt-get install cups
+$ sudo usermod -a -G lpadmin pi
+$ sudo cupsctl --remote-any
+$ sudo /etc/init.d/cups restart
+```
+
+http://raspberrypi-ip:631
+
+![image-20210902214343699](https://raw.githubusercontent.com/powerticket/typora-image-repo/image/img/image-20210902214343699.png)
+
+```bash
+$ lpadmin -d printer_name
+$ lp /usr/share/cups/data/testprint
 ```
 
