@@ -178,3 +178,27 @@ $ lpadmin -d printer_name
 $ lp /usr/share/cups/data/testprint
 ```
 
+## Auto-Login
+
+```bash
+ $ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/pi/.ssh/id_rsa):
+Created directory '/home/pi/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/pi/.ssh/id_rsa.
+Your public key has been saved in /home/pi/.ssh/id_rsa.pub.
+The key fingerprint is:
+# key generated
+$ cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
+```
+
+puttygen -> Load `~/.ssh/id_rsa` file -> Save private key
+
+![image-20210903210317429](https://raw.githubusercontent.com/powerticket/typora-image-repo/image/img/image-20210903210317429.png)
+
+putty -> SSH -> Auth -> Private key file for authentication
+
+![image-20210903210419070](https://raw.githubusercontent.com/powerticket/typora-image-repo/image/img/image-20210903210419070.png)
+
