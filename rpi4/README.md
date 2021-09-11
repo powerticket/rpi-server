@@ -23,3 +23,24 @@ wifis:
 `$ sudo dpkg-reconfigure tzdata`
 
 ![image-20210911223629351](https://raw.githubusercontent.com/powerticket/typora-image-repo/image/img/image-20210911223629351.png)
+
+### Docker
+
+#### [Installation](https://docs.docker.com/engine/install/ubuntu/)
+
+```bash
+$ sudo apt update
+$ sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+$ echo \
+  "deb [arch=arm64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+$ sudo apt update
+$ sudo apt install docker-ce docker-ce-cli containerd.io
+$ sudo docker run hello-world
+$ sudo groupadd docker
+$ sudo usermod -aG docker $USER
+$ newgrp docker
+$ docker run hello-world
+```
+
