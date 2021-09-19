@@ -174,8 +174,9 @@ http://raspberrypi-ip:631
 
 ![image-20210902214343699](https://raw.githubusercontent.com/powerticket/typora-image-repo/image/img/image-20210902214343699.png)
 
+![image-20210919130315776](https://raw.githubusercontent.com/powerticket/typora-image-repo/image/img/image-20210919130315776.png)
+
 ```bash
-$ lpadmin -d printer_name
 $ lp /usr/share/cups/data/testprint
 ```
 
